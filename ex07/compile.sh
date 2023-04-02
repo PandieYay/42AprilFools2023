@@ -1,0 +1,1 @@
+gcc smallest.c -D f=return -D m=main -D p=strlen -D q=write -D v=void -D i=int -D c='char*' -D n='if(d!=3)' -w 
