@@ -2,26 +2,7 @@
 #include <string.h>
 #include <stdbool.h>
 
-int checkhand(char *str)
-{
-    char *cards = "23456789TJDKA";
-    bool isCard;
-
-    for (int i = 0; str[i] != '\0'; ++i)
-    {
-        isCard = false;
-        for (int k = 0; cards[k] != '\0' && isCard == false; ++k)
-        {
-            if (str[i] == cards[k])
-                isCard = true;
-        }
-        if (isCard == false)
-            return (-1);
-    }
-    return (0);
-}
-
-void counthand(char *str)
+int counthand(char *str)
 {
     char *numbers = "23456789T";
     char *face_cards = "JDK";
@@ -53,22 +34,25 @@ void counthand(char *str)
                 ++total;
             else
                 total += 11;
+            cardCounted = true;
         }
+        if (cardCounted == false)
+            return (-1);
     }
-    if (total == 21)
-        printf("Blackjack!");
-    else
-        printf("%d", total);
+    return (total);
 }
 
 int main(int argc, char **argv)
 {
-    char *cards = "23456789TJDKA";
+    int total;
 
-	if (argc != 2)
+    if (argc != 2)
 		return (-1);
-    if (checkhand(argv[1]) == -1)
-        return (-1);
-
-    counthand(argv[1]);
+    total = counthand(argv[1]);
+    if (total == -1)
+        printf("Not a valid hand.\n");
+    else if (total == 21)
+        printf("Blackjack!\n");
+    else
+        printf("%d\n", total);
 }
