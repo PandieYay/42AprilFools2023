@@ -1,4 +1,4 @@
 while :
 do
-  rev yes 2>&1 | awk -F ' ' '{ print $4 }' | cut -c-3
+  rev yes 2>&1 | awk -F ' ' '{ print $2 }' | cut -c-3
 done
